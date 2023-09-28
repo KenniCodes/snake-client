@@ -16,13 +16,7 @@ const connect = () => {
     console.log('Connection successful');
     // sending our name to the server
     conn.write('Name: KEN');
-    // send message to server to move when connected
-    // conn.write('Move: up');
-    // setInterval(() => {
-    //   conn.write('Move: right');
-    // }, 50);
   });
-  
   return conn;
 };
 
