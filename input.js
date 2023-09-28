@@ -23,6 +23,10 @@ const handleUserInput = (key) => {
   } else if (key === '\u0064') {
     console.log("Move: right");
     connection.write("Move: right");
+  } else if (key === '\u0062') {
+    connection.write("Say: OMG!!");
+  } else if (key === '\u0066') {
+    connection.write("Say: Ahhh!!");
   }
 };
 stdin.on("data", handleUserInput);
