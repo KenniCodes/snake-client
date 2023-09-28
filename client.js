@@ -14,25 +14,18 @@ const connect = () => {
   // send connection successful message when connection is established
   conn.on('connect', () => {
     console.log('Connection successful');
+    // sending our name to the server
+    conn.write('Name: KEN');
     // send message to server to move when connected
     // conn.write('Move: up');
     // setInterval(() => {
     //   conn.write('Move: right');
     // }, 50);
   });
-  // sending our name to the server
-  process.stdin.on('data', (input) => {
-    conn.write(`Name: ${input}`);
-  });
-
+  
   return conn;
 };
 
 module.exports = {
   connect
 };
-
-// "Move: up" - move up one square (unless facing down)
-// "Move: down" - move down one square (unless facing up)
-// "Move: left" - move left one square (unless facing right)
-// "Move: right" - move left one square (unless facing left)
