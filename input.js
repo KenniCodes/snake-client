@@ -7,26 +7,35 @@ const setupInput = (conn) => {
   stdin.resume();
   return stdin;
 };
-
-const handleUserInput = (key) => {
-  if (key === '\u0003') {
-    process.exit();
-  } else if (key === '\u0077') {
+const keyMap = {
+  '\u0003': () => process.exit(),
+  '\u0077': () => {
     console.log("Move: up");
     connection.write("Move: up");
-  } else if (key === '\u0073') {
+  },
+  '\u0073': () => {
     console.log("Move: down");
     connection.write("Move: down");
-  } else if (key === '\u0061') {
+  },
+  '\u0061': () => {
     console.log("Move: left");
     connection.write("Move: left");
-  } else if (key === '\u0064') {
+  },
+  '\u0064': () => {
     console.log("Move: right");
     connection.write("Move: right");
-  } else if (key === '\u0062') {
+  },
+  '\u0062': () => {
     connection.write("Say: OMG!!");
-  } else if (key === '\u0066') {
+  },
+  '\u0066': () => {
     connection.write("Say: Ahhh!!");
+  }
+};
+const handleUserInput = (key) => {
+  const control = keyMap[key];
+  if (control) {
+    control();
   }
 };
 stdin.on("data", handleUserInput);
